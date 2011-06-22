@@ -1,0 +1,167 @@
+// TYPOGRAPHIC TOOLS
+=type($size, $line-height)
+  font-size: $size
+  line-height: $line-height
+
+=solid($lineheight)
+  font-size: $lineheight
+  line-height: $lineheight
+
+=caps($letterspace: 0.1em)
+  text-transform: uppercase
+  letter-spacing: $letterspace
+
+=text-shadow($textshadow)
+  text-shadow: $textshadow
+
+=letterpress($color)
+  text-shadow: 0 -1px 0 darken($color, 15%), 0 1px 0 lighten($color, 15%)
+
+
+// @font-face (fontspring syntax)
+=font($name, $url, $weight: normal, $style: normal)
+  @font-face
+    font-family: '$name'
+    font-weight: $weight
+    font-style: $style
+    src: url('#{$url}.eot?') format('eot'), url('#{$url}.woff') format('woff'), url('#{$url}.ttf')  format('truetype')
+
+
+// STANDARDIZE VENDOR-SPECIFIC PROPERTIES
+=border-radius($borderradius)
+  -webkit-border-radius: $borderradius
+  -moz-border-radius: $borderradius
+  -ms-border-radius: $borderradius
+  -o-border-radius: $borderradius
+  border-radius: $borderradius
+
+=corner-radius($top, $left, $borderradius)
+  -moz-border-radius-#{$top}#{$left}: $borderradius
+  -webkit-border-#{$top}-#{$left}-radius: $borderradius
+  -o-border-#{$top}-#{$left}-radius: $borderradius
+  border-#{$top}-#{$left}-radius: $borderradius
+
+=box-shadow($boxshadow)
+  -webkit-box-shadow: $boxshadow
+  -moz-box-shadow: $boxshadow
+  -ms-box-shadow: $boxshadow
+  -o-box-shadow: $boxshadow
+  box-shadow: $boxshadow
+
+=gradient($top, $bottom)
+  background-color: $top / 2 + $bottom / 2
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(startColorstr='")#{$top}unquote("', endColorstr='")#{$bottom}unquote("')")
+  -ms-filter: unquote("progid:DXImageTransform.Microsoft.gradient(startColorstr='#{$top}', endColorstr='#{$bottom}')")
+  background-image: -webkit-gradient(linear, left top, left bottom, from($top), to($bottom))
+  background-image: -webkit-linear-gradient(top, $top, $bottom)
+  background-image: -moz-linear-gradient(top, $top, $bottom)
+  background-image: -ms-linear-gradient(top, $top, $bottom)
+  background-image: -o-linear-gradient(top, $top, $bottom)
+  background-image: linear-gradient(top, $top, $bottom)
+
+=hgradient($left, $right)
+  background-color: $left / 2 + $right / 2
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr='")#{$left}unquote("', endColorstr='")#{$right}unquote("')")
+  -ms-filter: unquote("progid:DXImageTransform.Microsoft.gradient(GradientType=1, startColorstr='#{$left}', endColorstr='#{$right}')")
+  background-image: -webkit-gradient(linear, left top, right top, from($left), to($right))
+  background-image: -webkit-linear-gradient(left, $left, $right)
+  background-image: -moz-linear-gradient(left, $left, $right)
+  background-image: -ms-linear-gradient(left, $left, $right)
+  background-image: -o-linear-gradient(left, $left, $right)
+  background-image: linear-gradient(left, $left, $right)
+
+=gloss($color)
+  background-color: $color
+  filter: unquote("progid:DXImageTransform.Microsoft.gradient(startColorstr='")#{lighten($color, 5%)}unquote("', endColorstr='")#{darken($color, 5%)}unquote("')")
+  -ms-filter: unquote("progid:DXImageTransform.Microsoft.gradient(startColorstr='#{lighten($color, 5%)}', endColorstr='#{darken($color, 5%)}')")
+  background-image: -webkit-gradient( linear, left bottom, left top, color-stop(1, lighten($color, 15%)), color-stop(0.5, $color), color-stop(0.49, darken($color, 5%)))
+  background-image: -webkit-linear-gradient(top, lighten($color, 15%) 0%, $color 50%, darken($color, 5%) 51%, darken($color, 5%) 100%)
+  background-image: -moz-linear-gradient(top, lighten($color, 15%) 0%, $color 50%, darken($color, 5%) 51%, darken($color, 5%) 100%)
+  background-image: linear-gradient(top, lighten($color, 15%) 0%, $color 50%, darken($color, 5%) 51%, darken($color, 5%) 100%)
+
+=transform($transform)
+  -webkit-transform: $transform
+  -moz-transform: $transform
+  -ms-transform: $transform
+  -o-transform: $transform
+  transform: $transform
+
+=transition($transition: all 1s)
+  -webkit-transition: $transition
+  -moz-transition: $transition
+  -ms-transition: $transition
+  -o-transition: $transition
+  transition: $transition
+
+// ROTATION
+
+=transform-origin($origin)
+  -webkit-transform-origin: $origin
+  -moz-transform-origin: $origin
+  -ms-transform-origin: $origin
+  -o-transform-origin: $origin
+  transform-origin: $origin
+
+=rotate($deg)
+  display: block
+  +transform-origin(0% 100%)
+  .no-csstransforms &
+    @if $deg == 90
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=1)
+    @if $deg == 180
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=2)
+    @if $deg == 270
+      filter: progid:DXImageTransform.Microsoft.BasicImage(rotation=3)
+  -webkit-transform: rotate($deg+deg)
+  -moz-transform: rotate($deg+deg)
+  -ms-transform: rotate($deg+deg)
+  -o-transform: rotate($deg+deg)
+  transform: rotate($deg+deg)
+
+.r90
+  +rotate(90)
+
+.r180
+  +rotate(180)
+
+.r270
+  +rotate(270)
+
+
+// Mixins for debugging CSS and classes for debugging HTML.
+
+=r
+  background: #ff9999 !important
+
+=g
+  background: #99ff99 !important
+
+=b
+  background: #9999ff !important
+
+=y
+  background: #ffff99 !important
+
+=c
+  background: #99ffff !important
+
+=m
+  background: #ff99ff !important
+
+.r
+  +r
+
+.g
+  +g
+
+.b
+  +b
+
+.y
+  +y
+
+.c
+  +c
+
+.m
+  +m

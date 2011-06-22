@@ -1,0 +1,40 @@
+@import -/reset
+@import -/functions
+@import -/print
+@import -/mediaqueries
+
+$primary: #f00
+$secondary: #0f0
+$tertiary: #00f
+$text: #333
+$background: #fff
+
+$font: 13px Helmet, Freesans, sans-serif
+$headline: Helmet, Freesans, sans-serif
+
+body
+  font: $font
+  background: $background
+
+body, select, input, textarea
+  color: $text
+
+a
+  color: darken($primary, 20%)
+a:hover
+  color: $primary
+//  j.mp/webkit-tap-highlight-color
+a:link
+  -webkit-tap-highlight-color: #fcd700
+
+hr
+  border-top: 1px solid lighten($text, 50%)
+
+::-moz-selection
+  background: $primary
+  color: $background
+  text-shadow: none
+::selection
+  background: $primary
+  color: $background
+  text-shadow: none
